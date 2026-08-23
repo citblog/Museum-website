@@ -76,17 +76,81 @@ document.addEventListener('DOMContentLoaded', () => {
   fadeEls.forEach(el => observer.observe(el));
 
   const searchInput = document.querySelector('.search-bar input');
-  const emptyMessage = document.querySelector('.search-empty');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase().trim();
-      let visibleCount = 0;
-      document.querySelectorAll('.museum-card').forEach(card => {
-        const match = card.textContent.toLowerCase().includes(q);
-        card.style.display = match ? '' : 'none';
-        if (match) visibleCount++;
-      });
-      if (emptyMessage) emptyMessage.hidden = visibleCount > 0;
+  const resultsBox = document.getElementById('search-results');
+  const museumsIndex = Array.isArray(window.MUSEUMS_INDEX) ? window.MUSEUMS_INDEX : [];
+
+  if (searchInput && resultsBox && museumsIndex.length) {
+    let activeIndex = -1;
+
+    function closeResults() {
+      resultsBox.hidden = true;
+      resultsBox.innerHTML = '';
+      activeIndex = -1;
+      searchInput.setAttribute('aria-expanded', 'false');
+    }
+
+    function setActive(items, idx) {
+      activeIndex = idx;
+      items.forEach((el, i) => el.classList.toggle('active', i === activeIndex));
+      if (items[activeIndex]) items[activeIndex].scrollIntoView({ block: 'nearest' });
+    }
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      if (!q) {
+        closeResults();
+        return;
+      }
+      const matches = museumsIndex
+        .filter(m => (m.name + ' ' + m.city + ' ' + m.country).toLowerCase().includes(q))
+        .slice(0, 8);
+
+      resultsBox.innerHTML = '';
+      if (!matches.length) {
+        const nothing = document.createElement('p');
+        nothing.className = 'search-nothing';
+        nothing.textContent = 'Ничего не найдено';
+        resultsBox.appendChild(nothing);
+      } else {
+        matches.forEach(m => {
+          const link = document.createElement('a');
+          link.className = 'search-result';
+          link.href = m.url;
+          link.setAttribute('role', 'option');
+          const name = document.createElement('span');
+          name.className = 'search-name';
+          name.textContent = m.name;
+          const meta = document.createElement('span');
+          meta.className = 'search-meta';
+          meta.textContent = m.city + ', ' + m.country;
+          link.append(name, meta);
+          resultsBox.appendChild(link);
+        });
+      }
+      resultsBox.hidden = false;
+      searchInput.setAttribute('aria-expanded', 'true');
+      setActive([...resultsBox.querySelectorAll('.search-result')], -1);
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      const items = [...resultsBox.querySelectorAll('.search-result')];
+      if (e.key === 'Escape') {
+        closeResults();
+        return;
+      }
+      if (resultsBox.hidden || !items.length) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const delta = e.key === 'ArrowDown' ? 1 : -1;
+        setActive(items, Math.max(-1, Math.min(items.length - 1, activeIndex + delta)));
+      } else if (e.key === 'Enter' && activeIndex >= 0) {
+        e.preventDefault();
+        window.location.href = items[activeIndex].href;
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-bar')) closeResults();
     });
   }
 

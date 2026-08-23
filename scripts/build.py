@@ -97,7 +97,7 @@ def render_header(site, active_file):
     )
 
 
-def render_footer(site):
+def render_footer(site, extra_scripts=""):
     year = date.today().year
     return (
         '<footer class="footer">\n'
@@ -106,6 +106,7 @@ def render_footer(site):
         '\n'
         '<button class="back-to-top" aria-label="Наверх">↑</button>\n'
         '\n'
+        f'{extra_scripts}'
         '<script src="js/main.js"></script>\n'
         '</body>\n'
         '</html>\n'
@@ -141,9 +142,26 @@ def search_block():
     return (
         '<div class="search-bar fade-in">\n'
         '  <span class="search-icon" aria-hidden="true">🔍</span>\n'
-        '  <input id="museum-search" type="search" placeholder="Поиск музея..." aria-label="Поиск музея">\n'
+        '  <input id="museum-search" type="search" placeholder="Поиск музея..." aria-label="Поиск музея" '
+        'autocomplete="off" role="combobox" aria-expanded="false" aria-controls="search-results">\n'
+        '  <div class="search-results" id="search-results" role="listbox" hidden></div>\n'
         '</div>\n'
     )
+
+
+def museums_index_script(regions):
+    items = [
+        {
+            "name": m["name"],
+            "city": m["city"],
+            "country": m["country"],
+            "url": region["file"],
+        }
+        for region in regions
+        for m in region["museums"]
+    ]
+    payload = json.dumps(items, ensure_ascii=False).replace("</", "<\\/")
+    return f'<script>window.MUSEUMS_INDEX={payload};</script>\n'
 
 
 def build_index(site, regions):
@@ -201,6 +219,7 @@ def build_index(site, regions):
         '</section>\n'
         '\n'
         '<section class="section">\n'
+        f'{search_block()}'
         '  <div class="section-header fade-in">\n'
         '    <div class="section-label" aria-hidden="true">◆ Выберите регион</div>\n'
         '    <h2 class="section-title">Куда отправимся?</h2>\n'
@@ -212,7 +231,7 @@ def build_index(site, regions):
         '  </div>\n'
         '</section>\n\n'
     )
-    parts.append(render_footer(site))
+    parts.append(render_footer(site, museums_index_script(regions)))
     (ROOT / "index.html").write_text("".join(parts), encoding="utf-8")
 
 
@@ -254,11 +273,9 @@ def build_region(site, region):
             '</section>\n'
             '\n'
             '<section class="section">\n'
-            f'{search_block()}\n'
             '  <div class="museums-grid" id="museums-grid">\n\n'
             + cards +
             '  </div>\n'
-            '  <p class="search-empty" hidden>Ничего не найдено. Попробуйте изменить запрос.</p>\n'
             '</section>\n\n'
         ),
         render_footer(site),
