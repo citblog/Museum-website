@@ -4,112 +4,177 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Музеи Азии — Музеи мира</title>
+  <meta name="description" content="Древние цивилизации и современное искусство Востока">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Музеи Азии — Музеи мира">
+  <meta property="og:description" content="Древние цивилизации и современное искусство Востока">
+  <meta property="og:image" content="images/hermitage.webp">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Музеи Азии", "numberOfItems": 8, "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "Museum", "name": "Токийский национальный музей", "description": "Старейший и крупнейший музей Японии, основанный в 1872 году. Более 110 000 экспонатов — от самурайских доспехов и керамики до буддийской скульптуры и гравюр уки-э. Расположен в парке Уэно.", "url": "https://www.tnm.jp", "address": {"@type": "PostalAddress", "addressLocality": "Токио", "addressCountry": "Япония"}}}, {"@type": "ListItem", "position": 2, "item": {"@type": "Museum", "name": "Китайский национальный музей", "description": "Один из крупнейших музеев мира по площади (192 000 м²). Более 1 000 000 экспонатов, охватывающих историю Китая от древнейших времён до наших дней. Расположен на площади Тяньаньмэнь.", "url": "https://www.chnmuseum.cn", "address": {"@type": "PostalAddress", "addressLocality": "Пекин", "addressCountry": "Китай"}}}, {"@type": "ListItem", "position": 3, "item": {"@type": "Museum", "name": "Музей Стамбула", "description": "Открыт в 2023 году — крупнейший музей Стамбула. Расположен в реконструированном историческом здании. Коллекция охватывает 300 000 лет истории — от неолита до современности.", "url": "https://www.muzeistanbul.gov.tr", "address": {"@type": "PostalAddress", "addressLocality": "Стамбул", "addressCountry": "Турция"}}}, {"@type": "ListItem", "position": 4, "item": {"@type": "Museum", "name": "Музей Гуггенхайма в Абу-Даби", "description": "Будущий филиал Музея Гуггенхайма на острове Саадийят. Проект Фрэнка Гери — конический купол из переплетённых решёток. Открытие запланировано на декабрь 2026 года.", "url": "https://abudhabi.guggenheim.ae", "address": {"@type": "PostalAddress", "addressLocality": "Абу-Даби", "addressCountry": "ОАЭ"}}}, {"@type": "ListItem", "position": 5, "item": {"@type": "Museum", "name": "Лувр Абу-Даби", "description": "Первый универсальный музей арабского мира, открытый в 2017 году на острове Саадийят. Купол-«дождь света» по проекту Жана Нувеля. Экспозиция объединяет культуры Востока и Запада — от древностей до современности.", "url": "https://www.louvreabudhabi.ae", "address": {"@type": "PostalAddress", "addressLocality": "Абу-Даби", "addressCountry": "ОАЭ"}}}, {"@type": "ListItem", "position": 6, "item": {"@type": "Museum", "name": "Национальный музей Кореи", "description": "Крупнейший музей Кореи и один из самых посещаемых в Азии. Более 420 000 артефактов — от неолитических изделий до буддийской живописи и сокровищ династии Чосон.", "url": "https://www.museum.go.kr", "address": {"@type": "PostalAddress", "addressLocality": "Сеул", "addressCountry": "Южная Корея"}}}, {"@type": "ListItem", "position": 7, "item": {"@type": "Museum", "name": "Национальный дворцовый музей", "description": "Хранит императорскую коллекцию Китая, вывезенную на Тайвань в 1949 году. Около 700 000 предметов: бронза, нефрит, каллиграфия и знаменитый «Мясной камень» из яшмы.", "url": "https://www.npm.gov.tw", "address": {"@type": "PostalAddress", "addressLocality": "Тайбэй", "addressCountry": "Тайвань"}}}, {"@type": "ListItem", "position": 8, "item": {"@type": "Museum", "name": "Национальный музей Сингапура", "description": "Старейший музей страны, основанный в 1887 году. Посвящён истории и культуре Сингапура: мультимедийные инсталляции рассказывают о колониальном прошлом и пути к независимости.", "url": "https://www.nhb.gov.sg/nationalmuseum", "address": {"@type": "PostalAddress", "addressLocality": "Сингапур", "addressCountry": "Сингапур"}}}]}</script>
 </head>
 <body>
-
 <header class="header">
   <a href="index.html" class="logo">
-    <span class="logo-icon">🏛</span>
+    <span class="logo-icon" aria-hidden="true">🏛</span>
     Музеи мира
   </a>
-  <nav class="nav">
-    <a href="index.html">Главная</a>
-    <a href="russia.html">Россия</a>
-    <a href="europe.html">Европа</a>
-    <a href="asia.html" class="active">Азия</a>
-    <a href="africa.html">Африка</a>
-    <a href="australia.html">Австралия</a>
-    <a href="usa.html">США</a>
+  <nav class="nav" id="site-nav" aria-label="Основная навигация">
+      <a href="index.html">Главная</a>
+      <a href="russia.html">Россия</a>
+      <a href="europe.html">Европа</a>
+      <a href="asia.html" class="active">Азия</a>
+      <a href="africa.html">Африка</a>
+      <a href="australia.html">Австралия</a>
+      <a href="usa.html">США</a>
   </nav>
-  <div class="burger">
+  <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </header>
 
 <section class="page-hero page-hero-asia">
-  <div class="page-hero-flag">🌏</div>
+  <div class="page-hero-flag" aria-hidden="true">🌏</div>
   <h1>Музеи Азии</h1>
   <p>Древние цивилизации и современное искусство Востока</p>
 </section>
 
 <section class="section">
-  <div class="search-bar fade-in">
-    <span class="search-icon">🔍</span>
-    <input type="text" placeholder="Поиск музея...">
+<div class="search-bar fade-in">
+  <span class="search-icon" aria-hidden="true">🔍</span>
+  <input id="museum-search" type="search" placeholder="Поиск музея..." aria-label="Поиск музея">
+</div>
+
+  <div class="museums-grid" id="museums-grid">
+
+<article class="museum-card fade-in">
+  <div class="museum-image">
+    <img src="images/tokyo-national.webp" alt="Токийский национальный музей" width="1100" height="733" decoding="async">
+    <span class="museum-overlay">Токио</span>
   </div>
-
-  <div class="museums-grid">
-
-    <div class="museum-card fade-in">
-      <div class="museum-image">
-        <img src="images/tokyo-national.jpg" alt="Токийский национальный музей">
-        <span class="museum-overlay">Токио</span>
-      </div>
-      <div class="museum-body">
-        <h3>Токийский национальный музей</h3>
-        <div class="museum-city">Токио, Япония</div>
-        <p>Старейший и крупнейший музей Японии, основанный в 1872 году. Более 110 000 экспонатов — от самурайских доспехов и керамики до буддийской скульптуры и гравюр уки-э. Расположен в парке Уэно.</p>
-        <a href="https://www.tnm.jp" class="museum-link" target="_blank" rel="noopener">
-          Сайт музея
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="museum-card fade-in">
-      <div class="museum-image">
-        <img src="images/china-national.jpg" alt="Китайский национальный музей">
-        <span class="museum-overlay">Пекин</span>
-      </div>
-      <div class="museum-body">
-        <h3>Китайский национальный музей</h3>
-        <div class="museum-city">Пекин, Китай</div>
-        <p>Один из крупнейших музеев мира по площади (192 000 м²). Более 1 000 000 экспонатов, охватывающих историю Китая от древнейших времён до наших дней. Расположен на площади Тяньаньмэнь.</p>
-        <a href="https://www.chnmuseum.cn" class="museum-link" target="_blank" rel="noopener">
-          Сайт музея
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="museum-card fade-in">
-      <div class="museum-image">
-        <img src="images/guggenheim-abudhabi.jpg" alt="Музей Гуггенхайма в Абу-Даби">
-        <span class="museum-overlay">Абу-Даби</span>
-      </div>
-      <div class="museum-body">
-        <h3>Музей Гуггенхайма в Абу-Даби</h3>
-        <div class="museum-city">Абу-Даби, ОАЭ</div>
-        <p>Филиал Музея Гуггенхайма, открытый в 2021 году на острове Саадийят. Проект Фрэнка Гери — «купол мира» из 7 850 звёзд. Крупнейший музей современного искусства на Аравийском полуострове.</p>
-        <a href="https://abudhabi.guggenheim.ae" class="museum-link" target="_blank" rel="noopener">
-          Сайт музея
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="museum-card fade-in">
-      <div class="museum-image">
-        <img src="images/istanbul-museum.jpg" alt="Музей Стамбула">
-        <span class="museum-overlay">Стамбул</span>
-      </div>
-      <div class="museum-body">
-        <h3>Музей Стамбула</h3>
-        <div class="museum-city">Стамбул, Турция</div>
-        <p>Открыт в 2023 году — крупнейший музей Стамбула. Расположен в реконструированном историческом здании. Коллекция охватывает 300 000 лет истории — от неолита до современности.</p>
-        <a href="https://www.muzeistanbul.gov.tr" class="museum-link" target="_blank" rel="noopener">
-          Сайт музея
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
+  <div class="museum-body">
+    <h3>Токийский национальный музей</h3>
+    <div class="museum-city">Токио, Япония</div>
+    <p>Старейший и крупнейший музей Японии, основанный в 1872 году. Более 110 000 экспонатов — от самурайских доспехов и керамики до буддийской скульптуры и гравюр уки-э. Расположен в парке Уэно.</p>
+    <a href="https://www.tnm.jp" class="museum-link" target="_blank" rel="noopener">
+      Сайт музея
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </div>
+</article>
+<article class="museum-card fade-in">
+  <div class="museum-image">
+    <img src="images/china-national.webp" alt="Китайский национальный музей" width="1100" height="733" decoding="async">
+    <span class="museum-overlay">Пекин</span>
+  </div>
+  <div class="museum-body">
+    <h3>Китайский национальный музей</h3>
+    <div class="museum-city">Пекин, Китай</div>
+    <p>Один из крупнейших музеев мира по площади (192 000 м²). Более 1 000 000 экспонатов, охватывающих историю Китая от древнейших времён до наших дней. Расположен на площади Тяньаньмэнь.</p>
+    <a href="https://www.chnmuseum.cn" class="museum-link" target="_blank" rel="noopener">
+      Сайт музея
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</article>
+<article class="museum-card fade-in">
+  <div class="museum-image">
+    <img src="images/istanbul-museum.webp" alt="Музей Стамбула" width="1100" height="733" decoding="async" loading="lazy">
+    <span class="museum-overlay">Стамбул</span>
+  </div>
+  <div class="museum-body">
+    <h3>Музей Стамбула</h3>
+    <div class="museum-city">Стамбул, Турция</div>
+    <p>Открыт в 2023 году — крупнейший музей Стамбула. Расположен в реконструированном историческом здании. Коллекция охватывает 300 000 лет истории — от неолита до современности.</p>
+    <a href="https://www.muzeistanbul.gov.tr" class="museum-link" target="_blank" rel="noopener">
+      Сайт музея
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</article>
+<article class="museum-card fade-in">
+  <div class="museum-image">
+    <img src="images/guggenheim-abudhabi.webp" alt="Музей Гуггенхайма в Абу-Даби" width="1100" height="733" decoding="async" loading="lazy">
+    <span class="museum-overlay">Абу-Даби</span>
+  </div>
+  <div class="museum-body">
+    <h3>Музей Гуггенхайма в Абу-Даби</h3>
+    <div class="museum-city">Абу-Даби, ОАЭ</div>
+    <p>Будущий филиал Музея Гуггенхайма на острове Саадийят. Проект Фрэнка Гери — конический купол из переплетённых решёток. Открытие запланировано на декабрь 2026 года.</p>
+    <a href="https://abudhabi.guggenheim.ae" class="museum-link" target="_blank" rel="noopener">
+      Сайт музея
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</article>
+<article class="museum-card fade-in">
+  <div class="museum-image">
+    <img src="images/louvre-abudhabi.webp" alt="Лувр Абу-Даби" width="1100" height="733" decoding="async" loading="lazy">
+    <span class="museum-overlay">Абу-Даби</span>
+  </div>
+  <div class="museum-body">
+    <h3>Лувр Абу-Даби</h3>
+    <div class="museum-city">Абу-Даби, ОАЭ</div>
+    <p>Первый универсальный музей арабского мира, открытый в 2017 году на острове Саадийят. Купол-«дождь света» по проекту Жана Нувеля. Экспозиция объединяет культуры Востока и Запада — от древностей до современности.</p>
+    <a href="https://www.louvreabudhabi.ae" class="museum-link" target="_blank" rel="noopener">
+      Сайт музея
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</article>
+<article class="museum-card fade-in">
+  <div class="museum-image">
+    <img src="images/korea-national.webp" alt="Национальный музей Кореи" width="1100" height="733" decoding="async" loading="lazy">
+    <span class="museum-overlay">Сеул</span>
+  </div>
+  <div class="museum-body">
+    <h3>Национальный музей Кореи</h3>
+    <div class="museum-city">Сеул, Южная Корея</div>
+    <p>Крупнейший музей Кореи и один из самых посещаемых в Азии. Более 420 000 артефактов — от неолитических изделий до буддийской живописи и сокровищ династии Чосон.</p>
+    <a href="https://www.museum.go.kr" class="museum-link" target="_blank" rel="noopener">
+      Сайт музея
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</article>
+<article class="museum-card fade-in">
+  <div class="museum-image">
+    <img src="images/taipei-palace.webp" alt="Национальный дворцовый музей" width="1100" height="733" decoding="async" loading="lazy">
+    <span class="museum-overlay">Тайбэй</span>
+  </div>
+  <div class="museum-body">
+    <h3>Национальный дворцовый музей</h3>
+    <div class="museum-city">Тайбэй, Тайвань</div>
+    <p>Хранит императорскую коллекцию Китая, вывезенную на Тайвань в 1949 году. Около 700 000 предметов: бронза, нефрит, каллиграфия и знаменитый «Мясной камень» из яшмы.</p>
+    <a href="https://www.npm.gov.tw" class="museum-link" target="_blank" rel="noopener">
+      Сайт музея
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</article>
+<article class="museum-card fade-in">
+  <div class="museum-image">
+    <img src="images/singapore-national.webp" alt="Национальный музей Сингапура" width="1100" height="733" decoding="async" loading="lazy">
+    <span class="museum-overlay">Сингапур</span>
+  </div>
+  <div class="museum-body">
+    <h3>Национальный музей Сингапура</h3>
+    <div class="museum-city">Сингапур, Сингапур</div>
+    <p>Старейший музей страны, основанный в 1887 году. Посвящён истории и культуре Сингапура: мультимедийные инсталляции рассказывают о колониальном прошлом и пути к независимости.</p>
+    <a href="https://www.nhb.gov.sg/nationalmuseum" class="museum-link" target="_blank" rel="noopener">
+      Сайт музея
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</article>
+  </div>
+  <p class="search-empty" hidden>Ничего не найдено. Попробуйте изменить запрос.</p>
 </section>
 
 <footer class="footer">
-  <p>© 2025 «Музеи мира» — образовательный проект</p>
+  <p>© 2026 «Музеи мира» — образовательный проект. Все изображения принадлежат правообладателям.</p>
 </footer>
 
 <button class="back-to-top" aria-label="Наверх">↑</button>

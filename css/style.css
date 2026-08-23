@@ -138,8 +138,10 @@ img {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 5px;
+  padding: 8px;
   z-index: 1001;
+  background: none;
+  border: none;
 }
 
 .burger span {
@@ -605,15 +607,43 @@ img {
 }
 
 /* === ANIMATIONS === */
-.fade-in {
+html.js .fade-in {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.fade-in.visible {
+html.js .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.search-empty {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  padding: 2rem 0;
 }
 
 /* === BACK TO TOP === */
