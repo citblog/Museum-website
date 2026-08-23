@@ -2,7 +2,17 @@
   "name": "Музеи мира",
   "lang": "ru",
   "url": "",
-  "regions_order": ["russia", "europe", "asia", "africa", "australia", "usa"],
+  "regions_order": [
+    "russia",
+    "europe",
+    "asia",
+    "africa",
+    "australia",
+    "usa",
+    "southamerica",
+    "indonesia",
+    "mexico"
+  ],
   "og_image": "images/hermitage.webp",
   "index_title": "Музеи мира — Коллекция лучших музеев",
   "index_description": "Путешествие по 50 лучшим музеям планеты в шести регионах: Россия, Европа, Азия, Африка, Австралия и США.",

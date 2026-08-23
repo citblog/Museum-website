@@ -133,6 +133,13 @@ img {
   border-radius: 2px;
 }
 
+@media (max-width: 1200px) {
+  .nav a {
+    padding: 0.5rem 0.55rem;
+    font-size: 0.8rem;
+  }
+}
+
 .burger {
   display: none;
   flex-direction: column;
@@ -366,6 +373,15 @@ img {
 .region-visual-usa {
   background: linear-gradient(135deg, #1a237e, #b71c1c, #e0e0e0);
 }
+.region-visual-southamerica {
+  background: linear-gradient(135deg, #14343b, #00755e, #f4c430);
+}
+.region-visual-indonesia {
+  background: linear-gradient(135deg, #4a0f0f, #c62f2f, #ffb37b);
+}
+.region-visual-mexico {
+  background: linear-gradient(135deg, #123d28, #1f8a4c, #ce1141);
+}
 
 .region-visual-emoji {
   position: absolute;
@@ -444,6 +460,9 @@ img {
 .page-hero-africa::before { background: linear-gradient(135deg, #8b6914, #f4a460); }
 .page-hero-australia::before { background: linear-gradient(135deg, #2078a4, #60c5f7); }
 .page-hero-usa::before { background: linear-gradient(135deg, #1a237e, #b71c1c); }
+.page-hero-southamerica::before { background: linear-gradient(135deg, #14343b, #00755e, #f4c430); }
+.page-hero-indonesia::before { background: linear-gradient(135deg, #4a0f0f, #c62f2f); }
+.page-hero-mexico::before { background: linear-gradient(135deg, #123d28, #1f8a4c, #ce1141); }
 
 .page-hero-flag {
   font-size: 3.5rem;
