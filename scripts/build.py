@@ -34,7 +34,7 @@ def load_data():
     return site, ordered
 
 
-def head_tags(site, title, description, page_file):
+def head_tags(site, title, description, page_file, robots="index, follow"):
     url = site.get("url", "").rstrip("/")
     og_image = site["og_image"]
     lines = [
@@ -42,6 +42,8 @@ def head_tags(site, title, description, page_file):
         '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
         f'  <title>{esc(title)}</title>',
         f'  <meta name="description" content="{esc(description)}">',
+        f'  <meta name="robots" content="{esc(robots)}">',
+        '  <meta name="theme-color" content="#050e17">',
         '  <link rel="icon" type="image/svg+xml" href="favicon.svg">',
     ]
     if url:
@@ -55,24 +57,30 @@ def head_tags(site, title, description, page_file):
     ]
     if url:
         lines.append(f'  <meta property="og:url" content="{esc(canonical)}">')
-    lines.append('  <meta name="twitter:card" content="summary_large_image">')
+    lines += [
+        '  <meta name="twitter:card" content="summary_large_image">',
+        f'  <meta name="twitter:title" content="{esc(title)}">',
+        f'  <meta name="twitter:description" content="{esc(description)}">',
+        f'  <meta name="twitter:image" content="{esc(url + "/" + og_image if url else og_image)}">',
+    ]
     return "\n".join(lines)
 
 
-def render_head(site, title, description, jsonld, page_file):
-    tags = head_tags(site, title, description, page_file)
-    ld = json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/")
-    return (
+def render_head(site, title, description, jsonld, page_file, robots="index, follow"):
+    tags = head_tags(site, title, description, page_file, robots=robots)
+    parts = [
         '<!DOCTYPE html>\n'
         '<html lang="ru">\n'
         '<head>\n'
         f'{tags}\n'
         '  <link rel="stylesheet" href="css/style.css">\n'
-        '  <script>document.documentElement.classList.add("js");</script>\n'
-        f'  <script type="application/ld+json">{ld}</script>\n'
-        '</head>\n'
-        '<body>\n'
-    )
+        '  <script>document.documentElement.classList.add("js");</script>\n',
+    ]
+    if jsonld:
+        ld = json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/")
+        parts.append(f'  <script type="application/ld+json">{ld}</script>\n')
+    parts.append('</head>\n<body>\n')
+    return "".join(parts)
 
 
 def render_header(site, active_file):
@@ -208,6 +216,7 @@ def build_index(site, regions):
     }
     parts = [render_head(site, site["index_title"], site["index_description"], jsonld, "index.html")]
     parts.append(render_header(site, "index.html"))
+    parts.append('<main class="site-main">\n')
     parts.append(
         '\n<section class="hero">\n'
         '  <div class="hero-content">\n'
@@ -231,6 +240,7 @@ def build_index(site, regions):
         '  </div>\n'
         '</section>\n\n'
     )
+    parts.append('</main>\n')
     parts.append(render_footer(site, museums_index_script(regions)))
     (ROOT / "index.html").write_text("".join(parts), encoding="utf-8")
 
@@ -265,6 +275,7 @@ def build_region(site, region):
     page = "".join([
         render_head(site, region["page_title"], region["tagline"], jsonld, region["file"]),
         render_header(site, region["file"]),
+        '<main class="site-main">\n',
         (
             f'\n<section class="page-hero {region["hero_class"]}">\n'
             f'  <div class="page-hero-flag" aria-hidden="true">{region["flag"]}</div>\n'
@@ -273,11 +284,13 @@ def build_region(site, region):
             '</section>\n'
             '\n'
             '<section class="section">\n'
+            f'  <h2 class="visually-hidden">{esc(region["heading"])}</h2>\n'
             '  <div class="museums-grid" id="museums-grid">\n\n'
             + cards +
             '  </div>\n'
             '</section>\n\n'
         ),
+        '</main>\n',
         render_footer(site),
     ])
     (ROOT / region["file"]).write_text(page, encoding="utf-8")
@@ -285,8 +298,9 @@ def build_region(site, region):
 
 def build_404(site):
     page = "".join([
-        render_head(site, "Страница не найдена — Музеи мира", "Запрашиваемая страница не найдена.", {}, "404.html"),
+        render_head(site, "Страница не найдена — Музеи мира", "Запрашиваемая страница не найдена.", None, "404.html", robots="noindex"),
         render_header(site, ""),
+        '<main class="site-main">\n',
         (
             '\n<section class="hero">\n'
             '  <div class="hero-content">\n'
@@ -299,6 +313,7 @@ def build_404(site):
             '  </div>\n'
             '</section>\n\n'
         ),
+        '</main>\n',
         render_footer(site),
     ])
     (ROOT / "404.html").write_text(page, encoding="utf-8")
