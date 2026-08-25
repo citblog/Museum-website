@@ -16,6 +16,8 @@
   --accent-glow: rgba(115, 147, 170, 0.3);
   --border: rgba(158, 182, 203, 0.14);
   --glass: rgba(158, 182, 203, 0.06);
+  --accent-pink: #e74c8b;
+  --accent-purple: #6c63ff;
   --radius: 16px;
   --radius-sm: 10px;
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -103,7 +105,7 @@ img {
 .logo-icon {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, var(--accent), #e74c8b);
+  background: linear-gradient(135deg, var(--accent), var(--accent-pink));
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -251,7 +253,7 @@ img {
   letter-spacing: -2px;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 50%, #e74c8b 100%);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 50%, var(--accent-pink) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -791,7 +793,8 @@ button:focus-visible {
   .nav {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
+    transform: translateX(100%);
     width: 280px;
     height: 100vh;
     background: var(--bg-secondary);
@@ -799,11 +802,11 @@ button:focus-visible {
     padding: 5rem 2rem 2rem;
     gap: 0.5rem;
     border-left: 1px solid var(--border);
-    transition: right 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .nav.open {
-    right: 0;
+    transform: translateX(0);
   }
 
   .burger {
@@ -831,6 +834,14 @@ button:focus-visible {
 @media (max-width: 480px) {
   .hero h1 {
     letter-spacing: -1px;
+  }
+
+  .hero p {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  }
+
+  .section-desc {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
   }
 
   .museum-body {
