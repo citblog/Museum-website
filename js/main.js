@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let scrollTicking = false;
   function updateScrollUI() {
     scrollTicking = false;
-    header.classList.toggle('scrolled', window.scrollY > 50);
+    if (header) header.classList.toggle('scrolled', window.scrollY > 50);
     if (backToTop) {
       backToTop.classList.toggle('visible', window.scrollY > 400);
     }
@@ -52,6 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && burger && nav) {
+      closeMenu();
+    }
+  });
+
   if (backToTop) {
     backToTop.addEventListener('click', () => {
       window.scrollTo({
@@ -82,6 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (searchInput && resultsBox && museumsIndex.length) {
     let activeIndex = -1;
 
+    function debounce(fn, ms) {
+      let t;
+      return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
+    }
+
     function closeResults() {
       resultsBox.hidden = true;
       resultsBox.innerHTML = '';
@@ -95,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (items[activeIndex]) items[activeIndex].scrollIntoView({ block: 'nearest' });
     }
 
-    searchInput.addEventListener('input', () => {
+    searchInput.addEventListener('input', debounce(() => {
       const q = searchInput.value.toLowerCase().trim();
       if (!q) {
         closeResults();
@@ -130,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
       resultsBox.hidden = false;
       searchInput.setAttribute('aria-expanded', 'true');
       setActive([...resultsBox.querySelectorAll('.search-result')], -1);
-    });
+    }, 150));
 
     searchInput.addEventListener('keydown', (e) => {
       const items = [...resultsBox.querySelectorAll('.search-result')];

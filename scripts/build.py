@@ -152,7 +152,7 @@ def search_block():
         '  <span class="search-icon" aria-hidden="true">🔍</span>\n'
         '  <input id="museum-search" type="search" placeholder="Поиск музея..." aria-label="Поиск музея" '
         'autocomplete="off" role="combobox" aria-expanded="false" aria-controls="search-results">\n'
-        '  <div class="search-results" id="search-results" role="listbox" hidden></div>\n'
+        '  <div class="search-results" id="search-results" role="listbox" aria-live="polite" hidden></div>\n'
         '</div>\n'
     )
 
